@@ -1,0 +1,171 @@
+
+img {
+  height: 64px;
+  width: 75px;
+  margin-left: 55px;
+}
+
+.header{
+  width: 100%;
+  max-width: 275px;  
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12), 0 1px 5px 0 rgba(0,0,0,.2);
+  float: left;
+  /* display: flex; */
+  /* justify-content: flex-start; */
+  height: 100vh;
+}
+.nameusua{
+  margin-top:15px ;
+}
+.imgusua{
+  height: 64px;
+  width: 75px;
+}
+.topeusua{
+  padding: 32px 0px 0px;
+  padding-bottom: 2px;
+  background:#30678e;
+  
+}
+.topeusua li {
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+}
+.tope{
+  display: flex;
+  justify-content:flex-end;
+}
+.navizquierdo{
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.topderecho{
+  background: #0d4670;
+
+}
+.partederecha  .topederecho{
+  display: flex;
+  justify-content: space-between;
+}
+.topederecho span{
+ 
+    color: white;
+    font-size: 15px;
+}
+ span i {
+  margin-right: 1rem;
+}
+.ulderecho{
+  display: flex;
+}
+ul{
+  align-self: center;
+}
+li{
+  list-style: none;
+}
+
+
+.migaja{
+  /* background: #0a3859; */
+  border-radius: 0%;
+}
+ol li {
+  /* background: #0a3859; */
+  padding-left: 21px;
+  /* padding-top: 6px; */
+  /* padding-bottom: 5px; */
+  font-size: 15px!important;
+  /* color: white; */
+}
+
+
+.datos{
+  display: flex;
+  flex-direction: column;
+  width: 24%;
+}
+.card{
+  
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12), 0 1px 5px 0 rgba(0,0,0,.2);
+  width: 98%;
+}
+.loscard .usuarioss{
+  display: flex;
+    width: 65%;
+
+
+}
+.loscard{
+  margin-left: 287px;
+  margin-right: 15px;
+}
+.loginn{
+  background: aliceblue;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+
+}
+.loginn form{
+  display: flex;
+  flex-direction: column;
+}
+.card-deck{
+  display: block;
+  border:1px solid #ddd ;
+  margin-top: 60px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.12), 0 1px 5px 0 rgba(0,0,0,.2);
+  
+}
+.card-deck .card-body{
+  border-top:1px solid #ddd;
+}
+.h1{
+  text-align: center;
+  font-weight: 300;
+}
+
+.form-group{
+  display:inline-block;
+  margin-right: 4px ;
+}
+.topeactivo{
+  display: flex;
+  flex-direction: column;
+}
+.topeactivo div{
+  align-self: center;
+    display: flex;
+    width: 95%;
+    margin-right: 39px;
+    margin-bottom: 8px;
+    margin-top: -6px;
+}
+.userss{
+  width: 95%;
+  margin-left:24px ;
+}
+
+.topeactivo div input{
+  width: 30%;
+}
+a {
+  color: #333;
+}
+
+footer ul {
+  background:  #0a3859;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 5px;
+}
+footer ul li {
+  color: white;
+}
