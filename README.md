@@ -1,5 +1,5 @@
 # PruebaUnphu
-para poner a correr debes de abrir la consola y poner;
+para poner a correr debes de abrir la consola desde el mismo y poner;
 
 1-  yarn start
 
