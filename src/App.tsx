@@ -19,7 +19,6 @@ class App extends React.PureComponent {
           <Start >
             <Route exact path='/formAndUser' component={FormAndUser} />
             <Route exact path='/formAndUser/:document' component={withRouter(FormAndUser)} />
-            {/* <Route exact path='/userList:UserListId/userId?' component={UserListId} /> */}
             <Route exact path='/userList' component={UserList} />
             <Route exact path='/formulario' component={Formulario} />
           </Start>

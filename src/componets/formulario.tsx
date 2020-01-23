@@ -2,7 +2,6 @@ import React from 'react';
 import {User} from '../data/users';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { userInfo } from 'os';
-// import { RouteComponentProps } from 'react-router-dom';
 class Formulario extends React.Component<Form, any>{
     constructor(props : Form ){
         super(props);
@@ -72,18 +71,15 @@ class Formulario extends React.Component<Form, any>{
          this.setState({
              [name] : value 
          })
-        //  console.log(this.state);
 
         
     };
     validate = () =>{
-       // const phoneNUmberValidate = this.state.phonenumber && this.state.phonenumber.length >= 10 ;
         const documentValidate = this.state.document && this.state.document.length === 10 ;
         const allIsValid = (
             this.state.name &&
             this.state.lastname &&
             documentValidate 
-         //   phoneNUmberValidate
         );
         return allIsValid ;
     }
@@ -104,12 +100,8 @@ class Formulario extends React.Component<Form, any>{
     guardar = () => {
         if(window.confirm('quieres guardar lo editado?')){
         const { document } = this.props.match.params;
-        console.log(this.props.match.params);
         let datos = JSON.parse(localStorage.getItem('users')!);
-        // const  dataEdit = datos.map(user  =>  user.document === document ? {...this.state} : user);
         const edition = datos.map((user: any, i:number  )=> user.document === document ? {...this.state} : user );
-        console.log(edition, 'edited data');
-        // console.log(document);
         localStorage.setItem('users', JSON.stringify(edition));
         this.Redirect()
         this.setState({
@@ -117,17 +109,11 @@ class Formulario extends React.Component<Form, any>{
         })
         
       }
-            // this.Redirect();
     }
     Redirect = () => this.props.history.push('/userList');
-    // redirect = () => this.props.history.push('/FormAndUser');
     render() {
         return (
             <div>
-                {/* <Link to='/start'>
-                <h3> INICIO</h3>
-                
-                </Link>   */}
                     <div className="card m-2">
     
                         <div className='card-header'>
@@ -204,7 +190,6 @@ class Formulario extends React.Component<Form, any>{
                             </div>
                             <div className="form-group">
                                 <select
-                                    // onChange={this.handleChange}
                                     name="gender"
                                     className="form-control"
                                     value={ this.state.gender }
@@ -255,7 +240,6 @@ class Formulario extends React.Component<Form, any>{
                             <div className='form-group'>
                                 <select
                                     name='maritalstatus'
-                                    // onChange={this.handleChange}
                                     className="form-control"
                                     value={ this.state.maritalstatus }
     

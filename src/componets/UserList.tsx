@@ -24,7 +24,6 @@ class UserList extends React.Component<TasksListProps, Istate, any >{
     }
 
     deleteATasks = (index: number) => {
-        // let users = JSON.parse(localStorage.getItem('users')!)
 
         if (window.confirm('are you sure?')) {
             let users =
@@ -44,7 +43,6 @@ class UserList extends React.Component<TasksListProps, Istate, any >{
     }
 
 
-    // state = { users:this.props.users ,  currentPage: 1  , usersPerPage : 4   } as Istate ;
 
     handleClick = (evento: any) => {
         this.setState({
@@ -55,11 +53,9 @@ class UserList extends React.Component<TasksListProps, Istate, any >{
     handleChange(event: React.ChangeEvent<HTMLInputElement>) {
 
         const { name, value } = event.target;
-        // const valuee = value ;
         this.setState({
             ...this.state,
             [name]: value,
-            // search : value
     
         });
         console.log(value);
@@ -69,7 +65,6 @@ class UserList extends React.Component<TasksListProps, Istate, any >{
         console.log(search)
         const encontrar = this.state.users.filter((user, i) => { 
             return JSON.stringify(user).toLocaleLowerCase().includes(search.toLocaleLowerCase()) 
-            // return user === buscar
         })
         this.setState({
             users : encontrar
@@ -81,25 +76,12 @@ class UserList extends React.Component<TasksListProps, Istate, any >{
     edition = (element : any)=>{
         console.log(this.props.edit)
         this.props.edit(element);
+
     }
 
-
-
-
-
-
-
-
-
-
     render() {
-
-
-        // const userList = JSON.parse(localStorage.getItem('users') || '{}');
-
         const { users, currentPage, usersPerPage } = this.state;
 
-        //logic for displaying users
 
         const indexOfLastUsers = currentPage * usersPerPage;
         const indexOfFirtUsers = indexOfLastUsers - usersPerPage;
@@ -111,7 +93,6 @@ class UserList extends React.Component<TasksListProps, Istate, any >{
         })
         console.log(renderCurrentUsersPage);
 
-        // logic for displaying page numbers
         const pageNumber = [];
         for (let i = 1; i <= Math.ceil(users.length / usersPerPage); i++) { pageNumber.push(i) }
 
@@ -130,17 +111,6 @@ class UserList extends React.Component<TasksListProps, Istate, any >{
                 </li>
             );
         })
-
-
-        
-
-
-        // console.log(renderPageNumber);
-
-        // const tasks = this.props.users ;
-        // const tasks = JSON.parse(localStorage.getItem('users') || '{}');
-        // console.log(this.state.users);
-
         const user = currentUsersPage.map((user: User, i: number) => {
             return (
                 <div className='datos col-3 mb-2'>
@@ -157,10 +127,8 @@ class UserList extends React.Component<TasksListProps, Istate, any >{
 
                             <div id={"collapseOne" + i} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div className="card-body">
-                                    {/* <p>ID {this.getID()}</p> */}
                                     <p>id>  <b> {user.id} </b> </p>
                                     <p>Nombre.: <b>  {user.name} {user.middlename} {user.lastname}</b> </p>
-                                    {/* <p>nombre de usuario.:<b> {user.nombreUsuario}</b></p> */}
                                     <p>cedula.: <b> {user.document}</b></p>
                                     <p>correo: <b> {user.email}</b> </p>
                                    <div className='d-flex'>

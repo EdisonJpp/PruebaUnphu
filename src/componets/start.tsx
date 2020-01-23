@@ -1,8 +1,5 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
-// import perfil from '../perfil.jpg';
-// import { start } from 'repl';
-import { User } from '../data/users';
 
 
 
@@ -28,7 +25,6 @@ class start extends React.Component<any , any > {
     }
 
 
-    // redirect = ()=> this.props.history.push('/login');
 
     logout = () =>{
       if(window.confirm('do you want to leave the account?')){
@@ -51,7 +47,6 @@ class start extends React.Component<any , any > {
                     <div className="collapse navbar-collapse show" id="navbarNavAltMarkup">
 
                         <div className="topeusua">
-                               {/* <img src={perfil} className='perfil' alt='edison'/> */}
 
                             <ul>
 
