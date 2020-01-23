@@ -208,9 +208,7 @@ class FormAndUser extends React.Component<Iprops, IState>{
           <div className='row'>
 
             {/* <UserList  users={this.state.users} edit={this.edit} /> */}
-            {
-              user
-            }
+            {user }
 
             {       /*             <Activos 
         edit={this.edit()}
