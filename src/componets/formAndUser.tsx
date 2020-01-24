@@ -8,10 +8,10 @@ class FormAndUser extends React.Component<Iprops, IState>{
 
   constructor(props: Iprops) {
     super(props);
-    const uusers = JSON.parse(localStorage.getItem('users') || "{}");
+    const uusers = JSON.parse(localStorage.getItem('users')!);
 
     this.state = {
-      users: [] || uusers,
+      users: uusers || [] ,
       currentPage: 1,
       usersPerPage: 4
     }
@@ -64,17 +64,17 @@ class FormAndUser extends React.Component<Iprops, IState>{
   }
 
   render() {
-    const { currentPage, usersPerPage } = this.state;
+    const { users ,currentPage, usersPerPage } = this.state;
     const indexOfLastUsers = currentPage * usersPerPage;
     const indexOfFirtUsers = indexOfLastUsers - usersPerPage;
-    const currentUsersPage = this.state.users.slice(indexOfFirtUsers, indexOfLastUsers);
+    const currentUsersPage = users.slice(indexOfFirtUsers, indexOfLastUsers);
 
     const renderCurrentUsersPage = currentUsersPage.map((e: any, index: number) => {
       return <li> {index} </li>
     })
 
     const pageNumber = [];
-    for (let i = 1; i <= Math.ceil(this.state.users.length / usersPerPage); i++) { pageNumber.push(i) }
+    for (let i = 1; i <= Math.ceil(users.length / usersPerPage); i++) { pageNumber.push(i) }
 
     const renderPageNumber = pageNumber.map(number => {
       return (
