@@ -4,62 +4,48 @@ import { Link, Redirect } from 'react-router-dom';
 
 
 
-class start extends React.Component<any , any > {
-    constructor(props: string){
+class start extends React.Component<any, any> {
+    constructor(props: string) {
         super(props);
-        this.state={
-            Redirect : false 
-
+        this.state = {
+            Redirect: false
         }
     }
+
     setRedirect = () => {
         this.setState({
-            Redirect : true
+            Redirect: true
         })
     }
 
-    renderRedirect = () =>{
-        if(this.state.Redirect === true){
-            return <Redirect to='/login'/>
-        }else console.log('no saliste');
+    renderRedirect = () => {
+        if (this.state.Redirect === true) {
+            return <Redirect to='/login' />
+        } else return null;
     }
 
-
-
-    logout = () =>{
-      if(window.confirm('do you want to leave the account?')){
-        localStorage.removeItem('userData');
-        return this.setRedirect();
-      }else console.log('you dindnt go out');
+    logout = () => {
+        if (window.confirm('do you want to leave the account?')) {
+            localStorage.removeItem('userData');
+            return this.setRedirect();
+        } else return null;
     }
-
-
-
-
 
     render() {
         return (
-
-
             <div className='body'>
-                    {this.renderRedirect()}
+                {this.renderRedirect()}
                 <div className="header">
                     <div className="collapse navbar-collapse show" id="navbarNavAltMarkup">
-
                         <div className="topeusua">
-
                             <ul>
-
-
                                 <li className="nameusua">EDISON PADILLA</li>
                                 <li>Edisojp@gmail.com</li>
-
                             </ul>
                         </div>
                         <ul className="nav flex-columns navizquierdo">
-
                             <li className="nav-item">
-                               <span><Link to='/formAndUser'>
+                                <span><Link to='/formAndUser'>
                                     <span className="nav-link active"><i className="fas fa-user"></i>
                                         Agregar Usuario
                                 </span>
@@ -68,23 +54,18 @@ class start extends React.Component<any , any > {
                             </li>
                             <div className="dropdown-divider"></div>
                             <li className="nav-item">
-                              <Link to='/userList'> <span className="nav-link"><i className="fas fa-users"></i>Usuarios Activos </span></Link>
+                                <Link to='/userList'> <span className="nav-link"><i className="fas fa-users"></i>Usuarios Activos </span></Link>
                             </li>
                             <div className="dropdown-divider"></div>
                             <li className="nav-item"  >
-                                 <span className="nav-link" onClick={ ()=> this.logout()} ><i className="fas fa-sign-out-alt"></i> Cerrar Session</span>
+                                <span className="nav-link" onClick={() => this.logout()} ><i className="fas fa-sign-out-alt"></i> Cerrar Session</span>
                             </li>
                             <div className="dropdown-divider"></div>
-
-
                         </ul>
-
                     </div>
-
                 </div>
                 <div className='partederecha'>
                     <div className='topderecho'>
-
                         <nav className="navbar navbar-expand-lg  topederecho">
                             <span ><i className="fas fa-user-check"></i>Registro de usuario</span>
                             <span className="navbar-toggler-icon"></span>
@@ -92,18 +73,13 @@ class start extends React.Component<any , any > {
                                 <div className="navbar-nav">
                                     <span className="nav-item nav-link active"> <i className="fas fa-search"></i>Buscar <span
                                         className="sr-only">(current)</span></span>
-                                   <Link to='/inicio'> <span className="nav-item nav-link" >Inicio<i className="fas fa-home"></i></span></Link>
+                                    <Link to='/inicio'> <span className="nav-item nav-link" >Inicio<i className="fas fa-home"></i></span></Link>
                                 </div>
                             </div>
                         </nav>
-
-
                     </div>
-
-
-
                 </div>
-                { this.props.children }
+                {this.props.children}
             </div>
         );
     }
