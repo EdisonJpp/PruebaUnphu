@@ -1,7 +1,6 @@
 import React from 'react';
 import Formulario from './formulario';
 import { User } from '../data/users';
-import UserList from './UserList';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 
@@ -23,6 +22,7 @@ class FormAndUser extends React.Component<Iprops, IState>{
     if (!userData) {
       userData = []
     }
+    const document = user.document ; 
     userData.push(user);
     localStorage.setItem('users', JSON.stringify(userData));
 
@@ -41,9 +41,6 @@ class FormAndUser extends React.Component<Iprops, IState>{
 
 
   }
-
-
-
 
 
   redirect2 = () => this.props.history.push('/userList');
@@ -75,7 +72,6 @@ class FormAndUser extends React.Component<Iprops, IState>{
       localStorage.setItem('users' , JSON.stringify(uuser));
           this.setState({
             users : uuser
-
           });
     }
   }
@@ -104,7 +100,6 @@ class FormAndUser extends React.Component<Iprops, IState>{
         <li
           className='page-item'
           key={number}
-          // id={number}
           value={number}
           onClick={this.handleClick}
         >
@@ -113,7 +108,21 @@ class FormAndUser extends React.Component<Iprops, IState>{
       );
     })
 
-    const user = currentUsersPage.map((user: User, i: number) => {
+    const array = (a:User, b: User )=>{
+      const aa = a.name.toUpperCase();
+      const bb = b.name.toUpperCase();
+
+      let compare = 0 ; 
+      if( aa > bb ){
+        compare = 1
+
+      }else if(aa < bb ){
+        compare = -1
+      }
+      return compare
+    };
+
+    const user = currentUsersPage.sort(array).map((user: User, i: number) => {
       return (
         <div className='datos col-3 mb-2'>
 

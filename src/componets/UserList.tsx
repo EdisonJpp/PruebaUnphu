@@ -6,10 +6,11 @@ class Istate {
     users = [];
     currentPage = 1;
     usersPerPage = 8;
-    search = 'buscar'
+    search = ''
+    userFilter = [];
 }
 
-class UserList extends React.Component<TasksListProps, Istate, any >{
+class UserList extends React.Component<TasksListProps, Istate, any>{
     constructor(props: TasksListProps) {
         super(props);
         const users = JSON.parse(localStorage.getItem('users')!);
@@ -17,32 +18,24 @@ class UserList extends React.Component<TasksListProps, Istate, any >{
             users: users,
             currentPage: 1,
             usersPerPage: 4,
-            search : ''
-
-
+            userFilter: [],
+            search: ''
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     deleteATasks = (index: number) => {
-
         if (window.confirm('are you sure?')) {
             let users =
-                this.state.users.filter((user: number, i) => {
+                this.state.users.filter((user: number, i: number) => {
                     return i !== index
                 })
             localStorage.setItem('users', JSON.stringify(users));
-
             this.setState({
                 users
             })
-
-            console.log('aqui');
-
-
         }
     }
-
-
 
     handleClick = (evento: any) => {
         this.setState({
@@ -50,38 +43,34 @@ class UserList extends React.Component<TasksListProps, Istate, any >{
         });
 
     }
-    handleChange(event: React.ChangeEvent<HTMLInputElement>) {
 
-        const { name, value } = event.target;
+    handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
         this.setState({
             ...this.state,
-            [name]: value,
-    
-        });
-        console.log(value);
-    }
-    handleSubmit(index : any){
-        const search = this.state.search || '';
-        console.log(search)
-        const encontrar = this.state.users.filter((user, i) => { 
-            return JSON.stringify(user).toLocaleLowerCase().includes(search.toLocaleLowerCase()) 
+            [name]: value
         })
+    }
+
+
+    handleSubmit() {
+        const search = this.state.search;
+
+        const encontrar = this.state.users.filter(users => JSON.stringify(users).toLocaleLowerCase().includes(search.toLocaleLowerCase()));
         this.setState({
-            users : encontrar
+            userFilter: encontrar
         })
-
-        console.log(encontrar);
     }
 
-    edition = (element : any)=>{
-        console.log(this.props.edit)
+
+
+    edition = (element: any) => {
         this.props.edit(element);
 
     }
 
     render() {
         const { users, currentPage, usersPerPage } = this.state;
-
 
         const indexOfLastUsers = currentPage * usersPerPage;
         const indexOfFirtUsers = indexOfLastUsers - usersPerPage;
@@ -91,7 +80,6 @@ class UserList extends React.Component<TasksListProps, Istate, any >{
             return <li> {index} </li>
 
         })
-        console.log(renderCurrentUsersPage);
 
         const pageNumber = [];
         for (let i = 1; i <= Math.ceil(users.length / usersPerPage); i++) { pageNumber.push(i) }
@@ -103,7 +91,6 @@ class UserList extends React.Component<TasksListProps, Istate, any >{
                 <li
                     className='page-item'
                     key={number}
-                    // id={number}
                     value={number}
                     onClick={this.handleClick}
                 >
@@ -111,41 +98,94 @@ class UserList extends React.Component<TasksListProps, Istate, any >{
                 </li>
             );
         })
-        const user = currentUsersPage.map((user: User, i: number) => {
+        const Usuarios = ( a:User , b:User) =>{
+            let fornameA = a.name.toUpperCase();
+            let fornameB = b.name.toUpperCase();
+             
+            let compare = 0
+            if( fornameA > fornameB){
+                compare = 1
+            }else if(fornameA < fornameB){
+                compare = -1
+            }
+            return  compare 
+        };
+
+        const user = currentUsersPage.sort(Usuarios).map((user: User, i: number) => {
             return (
-                <div className='datos col-3 mb-2'>
-
-                    <div className="accordion" id="accordionExample">
-                        <div className="card">
-                            <div className="card-header" id="headingOne">
-                                <h2 className="mb-0">
-                                    <button className="btn btn-link" type="button" data-toggle="collapse" data-target={"#collapseOne" + i} aria-expanded="true" aria-controls="collapseOne">
-                                     <span className="text-truncate d-block w-100" style={{maxWidth: '200px'}}>{user.name} {user.lastname}</span>
-        </button>
-                                </h2>
-                            </div>
-
-                            <div id={"collapseOne" + i} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                <div className="card-body">
-                                    <p>id>  <b> {user.id} </b> </p>
-                                    <p>Nombre.: <b>  {user.name} {user.middlename} {user.lastname}</b> </p>
-                                    <p>cedula.: <b> {user.document}</b></p>
-                                    <p>correo: <b> {user.email}</b> </p>
-                                   <div className='d-flex'>
-                                   <button className='btn btn-primary' onClick={ () => this.edition(user)}  >editar</button>
-                                    <button className='btn btn-danger' type='button' onClick={() =>this.deleteATasks(i)}>Eliminar Usuario</button>
-                                   </div>
+          
+                                    <div className='datos col-3 mb-2 d-flex'>
+                            
+                            <div className="accordion" id="accordionExample">
+                                <div className="card">
+                                    <div className="card-header" id="headingOne">
+                                        <h2 className="mb-0">
+                                            <button className="btn btn-link" type="button" data-toggle="collapse" data-target={"#collapseOne" + i} aria-expanded="true" aria-controls="collapseOne">
+                                                <span className="text-truncate d-block w-100" style={{ maxWidth: '200px' }}>{user.name} {user.lastname}</span>
+                                            </button>
+                                        </h2>
+                                    </div>
+        
+                                    <div id={"collapseOne" + i} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div className="card-body">
+                                            <p>id>  <b> {user.id} </b> </p>
+                                            <p>Nombre.: <b>  {user.name} {user.middlename} {user.lastname}</b> </p>
+                                            <p>cedula.: <b> {user.document}</b></p>
+                                            <p>correo: <b> {user.email}</b> </p>
+                                            <div className='d-flex'>
+                                                <button className='btn btn-danger' type='button' onClick={() => this.deleteATasks(i)}>Eliminar Usuario</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+        
+        
+        
                             </div>
                         </div>
 
+            );
+        })
 
+        
 
+        const usersfilter = this.state.userFilter.map((userss:User , i:number  ) =>{
+            return( 
+
+                <div className='datos col-3 mb-2 d-flex'>
+
+                <div className="accordion" id="accordionExample">
+                    <div className="card">
+                        <div className="card-header" id="headingOne">
+                            <h2 className="mb-0">
+                                <button className="btn btn-link" type="button" data-toggle="collapse" data-target={"#collapseOne" + userss.id} aria-expanded="true" aria-controls="collapseOne">
+                                    <span className="text-truncate d-block w-100" style={{ maxWidth: '200px' }}>{userss.name} {userss.lastname}</span>
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id={"collapseOne" + userss.id} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div className="card-body">
+                                <p>id>  <b> {userss.id} </b> </p>
+                                <p>Nombre.: <b>  {userss.name} {userss.middlename} {userss.lastname}</b> </p>
+                                <p>cedula.: <b> {userss.document}</b></p>
+                                <p>correo: <b> {userss.email}</b> </p>
+                                <div className='d-flex'>
+                                    <button className='btn btn-primary' onClick={() => this.edition(userss)}  >editar</button>
+                                    <button className='btn btn-danger' type='button' onClick={() => this.deleteATasks(i)}>Eliminar Usuario</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+
+
                 </div>
+            </div>
 
             );
         })
+       
         return (
             <div className='userss'>
                 <nav className="breadcrumb-container" aria-label="breadcrumb">
@@ -171,38 +211,32 @@ class UserList extends React.Component<TasksListProps, Istate, any >{
                             value={this.state.search}
                             onChange={this.handleChange}
                         />
-                        <button className='btn btn-primary' onClick={ ()=> this.handleSubmit}>buscar</button>
+                        <button className='btn btn-primary' onClick={this.handleSubmit}>buscar</button>
                     </div>
 
                 </div>
                 <div className='row'>
 
 
-                    {user}
+                    {user} 
                 </div>
                 <footer>
                     <ul >
+        
                         {renderPageNumber}
                     </ul>
                 </footer>
+                <h2>
+                    Resultados <span className='badge badge-pill badge-danger ml-2'>{this.state.userFilter.length}</span>
+                </h2>
+                    {usersfilter}
 
             </div>
         );
     }
 }
-interface TasksListProps{
-     users: User[];
-   edit : (element : any ) => void
-
-    // deleteATask: (index: number) => void;
-    // handleClick : (e: number) => void ;
-
+interface TasksListProps {
+    users: User[];
+    edit: (element: any) => void
 }
-// interface Istate { 
-//     users:  User[];
-//     currentPage:  1;
-//     usersPerPage: 4;
-
-
-// }
 export default UserList;

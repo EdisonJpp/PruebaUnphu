@@ -27,7 +27,7 @@ class Login extends React.PureComponent<any , any >{
         if( userData.username === user.username && userData.password === user.password){
             localStorage.setItem('userData', JSON.stringify(user));
             return this.Redirect();
-        }else console.log('no redirect');
+        }else return null ;
 
         
     }
@@ -90,7 +90,5 @@ class Login extends React.PureComponent<any , any >{
         );
     }
 }
-
-
 
 export default Login ;

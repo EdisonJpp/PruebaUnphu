@@ -1,7 +1,6 @@
 import React from 'react';
 import {User} from '../data/users';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { userInfo } from 'os';
 class Formulario extends React.Component<Form, any>{
     constructor(props : Form ){
         super(props);
@@ -45,7 +44,7 @@ class Formulario extends React.Component<Form, any>{
             haveson: this.state.haveson,
             birthday: this.state.birthday
         }
-
+        
        this.props.addANewUser(user);
        this.setState({
         id : Number,
@@ -63,7 +62,6 @@ class Formulario extends React.Component<Form, any>{
         haveson: '',
         birthday: ''
        });
-        // console.log(user);
     }
     handleChange = (e: React.ChangeEvent<HTMLInputElement> ) => {
 
@@ -87,10 +85,8 @@ class Formulario extends React.Component<Form, any>{
 
         const document = this.props.match && this.props.match.params.document;
         const userData = JSON.parse(localStorage.getItem('users') || "[]");
-        console.log(document);
         if(document) {
             const user = userData.find((user:any, i:number ) =>  user.document && user.document === document   );
-            console.log(user);
             this.setState({
                  ...user
             })
@@ -107,7 +103,6 @@ class Formulario extends React.Component<Form, any>{
         this.setState({
             users : edition
         })
-        
       }
     }
     Redirect = () => this.props.history.push('/userList');
