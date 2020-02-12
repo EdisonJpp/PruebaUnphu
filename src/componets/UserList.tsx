@@ -15,7 +15,7 @@ class UserList extends React.Component<TasksListProps, Istate, any>{
         super(props);
         const users = JSON.parse(localStorage.getItem('users')!);
         this.state = {
-            users: users,
+            users: users || [],
             currentPage: 1,
             usersPerPage: 4,
             userFilter: [],
@@ -41,7 +41,6 @@ class UserList extends React.Component<TasksListProps, Istate, any>{
         this.setState({
             currentPage: Number(evento.target.value)
         });
-
     }
 
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +65,6 @@ class UserList extends React.Component<TasksListProps, Istate, any>{
 
     edition = (element: any) => {
         this.props.edit(element);
-
     }
 
     render() {
@@ -78,16 +76,13 @@ class UserList extends React.Component<TasksListProps, Istate, any>{
 
         const renderCurrentUsersPage = currentUsersPage.map((e: Number, index: number) => {
             return <li> {index} </li>
-
         })
 
         const pageNumber = [];
         for (let i = 1; i <= Math.ceil(users.length / usersPerPage); i++) { pageNumber.push(i) }
 
-
         const renderPageNumber = pageNumber.map(number => {
             return (
-
                 <li
                     className='page-item'
                     key={number}
@@ -190,11 +185,9 @@ class UserList extends React.Component<TasksListProps, Istate, any>{
             <div className='userss'>
                 <nav className="breadcrumb-container" aria-label="breadcrumb">
                     <ol className="breadcrumb migaja ">
-
                         <li>
                             <h4>
                                 Usuarios Activos <span className='badge badge-pill badge-danger ml-2'>{this.state.users.length}</span>
-
                             </h4>
                         </li>
 
@@ -202,7 +195,6 @@ class UserList extends React.Component<TasksListProps, Istate, any>{
                 </nav>
                 <div className='topeactivo'>
                     <div className='' >
-
                         <input
                             type='text'
                             className='form-control'
@@ -213,7 +205,6 @@ class UserList extends React.Component<TasksListProps, Istate, any>{
                         />
                         <button className='btn btn-primary' onClick={this.handleSubmit}>buscar</button>
                     </div>
-
                 </div>
                 <div className='row'>
 

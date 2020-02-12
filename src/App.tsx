@@ -15,7 +15,6 @@ class App extends React.PureComponent {
         <BrowserRouter >
         <Switch>
           <Route exact path='/login' component={Login} />
-
           <Start >
             <Route exact path='/formAndUser' component={FormAndUser} />
             <Route exact path='/formAndUser/:document' component={withRouter(FormAndUser)} />

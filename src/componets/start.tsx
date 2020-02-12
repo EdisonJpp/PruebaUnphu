@@ -9,9 +9,9 @@ class start extends React.Component<any, any> {
         super(props);
         this.state = {
             Redirect: false
-
         }
     }
+
     setRedirect = () => {
         this.setState({
             Redirect: true
@@ -33,31 +33,19 @@ class start extends React.Component<any, any> {
         } else return null
     }
 
-
-
-
-
     render() {
         return (
-
-
             <div className='body'>
                 {this.renderRedirect()}
                 <div className="header">
                     <div className="collapse navbar-collapse show" id="navbarNavAltMarkup">
-
                         <div className="topeusua">
-
                             <ul>
-
-
                                 <li className="nameusua">EDISON PADILLA</li>
                                 <li>Edisojp@gmail.com</li>
-
                             </ul>
                         </div>
                         <ul className="nav flex-columns navizquierdo">
-
                             <li className="nav-item">
                                 <span><Link to='/formAndUser'>
                                     <span className="nav-link active"><i className="fas fa-user"></i>
@@ -75,16 +63,11 @@ class start extends React.Component<any, any> {
                                 <span className="nav-link" onClick={() => this.logout()} ><i className="fas fa-sign-out-alt"></i> Cerrar Session</span>
                             </li>
                             <div className="dropdown-divider"></div>
-
-
                         </ul>
-
                     </div>
-
                 </div>
                 <div className='partederecha'>
                     <div className='topderecho'>
-
                         <nav className="navbar navbar-expand-lg  topederecho">
                             <span ><i className="fas fa-user-check"></i>Registro de usuario</span>
                             <span className="navbar-toggler-icon"></span>

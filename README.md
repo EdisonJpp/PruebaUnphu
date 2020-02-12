@@ -3,7 +3,7 @@ para poner a correr debes de abrir la consola desde el mismo editor y poner;
 
 1- yo uso Visual Studio Code, para abri la consola debes presionar CTRL + j.
 2- Luego escribre " yarn install " y presiona enter.
-3- yarn star para abrir el proyecto.
+3- yarn start para abrir el proyecto.
 4- esperar a que suba. FIN
 
 Datos para entrar a la app; 
@@ -17,5 +17,5 @@ Datos para entrar a la app;
 
 * Mis datos: 
 nombre completo :  Edison Jesus Padilla paulino 
-Edad:  18ss
+Edad:  18
 Telfono : (809) 997-3338
