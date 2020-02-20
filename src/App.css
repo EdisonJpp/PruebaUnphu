@@ -134,6 +134,11 @@ ol li {
   display:inline-block;
   margin-right: 4px ;
 }
+.result{
+  margin-right: 4px;
+  display: flex;
+  width: 26%;
+}
 .topeactivo{
   display: flex;
   flex-direction: column;

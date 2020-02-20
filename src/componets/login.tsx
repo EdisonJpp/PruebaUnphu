@@ -13,34 +13,28 @@ class Login extends React.PureComponent<any, any>{
             ...this.state,
             [name]: value,
         });
-    }
-
+    };
     handleSubmit = () => {
-        const userData = new State;
+        const userData = new State();
         const user = {
             username: this.state.username,
             password: this.state.password
-        }
-
+        };
         if (userData.username === user.username && userData.password === user.password) {
             localStorage.setItem('userData', JSON.stringify(user));
             return this.Redirect();
         } else return null
-
-
-    }
+    };
     componentDidMount = () => {
-        const userData = new State;
-        const user =
-            JSON.parse(localStorage.getItem("userData")!);
+        const userData = new State();
+        const user = JSON.parse(localStorage.getItem("userData")!);
         if (user) {
             userData.username === user.username && userData.password === user.password ? this.Redirect() : console.log('no redirect2');
-        } else return this.Redirect2()
-    }
-
+        } else return this.Redirect2();
+    };
     Redirect = () => this.props.history.push('/formAndUser');
     Redirect2 = () => this.props.history.push('/login');
-
+    
     render() {
         return (
             <div className='loginn'>
@@ -74,7 +68,7 @@ class Login extends React.PureComponent<any, any>{
                 </div>
             </div>
         );
-    }
-}
+    };
+};
 
 export default Login ;

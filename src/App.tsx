@@ -25,7 +25,7 @@ class App extends React.PureComponent {
         </BrowserRouter>
       </div>
     );
-  }
-}
+  };
+};
 
 export default App;  

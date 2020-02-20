@@ -83,9 +83,9 @@ class Formulario extends React.Component<Form, any>{
 
     componentDidMount = () => {
         const document = this.props.match && this.props.match.params.document;
-        const userData = JSON.parse(localStorage.getItem('users') || "[]");
+        const userData = JSON.parse(localStorage.getItem('users')!);
         if(document) {
-            const user = userData.find((user:any, i:number ) =>  user.document && user.document === document   );
+            const user = userData.find((user:any, i:number ) =>  user.document && user.document === document);
             this.setState({
                 ...user
             })
@@ -94,14 +94,17 @@ class Formulario extends React.Component<Form, any>{
 
     guardar = () => {
         if(window.confirm('quieres guardar lo editado?')){
+
         const { document } = this.props.match.params;
         let datos = JSON.parse(localStorage.getItem('users')!);
         const edition = datos.map((user: any, i:number  )=> user.document === document ? {...this.state} : user );
         localStorage.setItem('users', JSON.stringify(edition));
-        this.Redirect()
+
         this.setState({
             users : edition
+
         })
+        this.Redirect()
       }
     }
 
@@ -178,7 +181,7 @@ class Formulario extends React.Component<Form, any>{
                             <select
                                 name="gender"
                                 className="form-control"
-                                value={this.state.gender}
+                                placeholder='genero'
 
                             >
                                 <option className="form-control">masculino</option>
