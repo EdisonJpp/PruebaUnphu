@@ -1,38 +1,29 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 
-
-
-
 class start extends React.Component<any, any> {
     constructor(props: string) {
         super(props);
         this.state = {
             Redirect: false
-        }
-    }
-
+        };
+    };
     setRedirect = () => {
         this.setState({
             Redirect: true
-        })
-    }
-
+        });
+    };
     renderRedirect = () => {
         if (this.state.Redirect === true) {
             return <Redirect to='/login' />
-        } else return null
-    }
-
-
-
+        } else return null;
+    };
     logout = () => {
         if (window.confirm('do you want to leave the account?')) {
             localStorage.removeItem('userData');
             return this.setRedirect();
-        } else return null
-    }
-
+        } else return null;
+    };
     render() {
         return (
             <div className='body'>
@@ -85,10 +76,6 @@ class start extends React.Component<any, any> {
                     {this.props.children}
                 </div>
                 );
-            }
-        }
-        
-        
-        
-        
+            };
+        };
 export default start;

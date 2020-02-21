@@ -1,6 +1,7 @@
 import React from 'react';
 import { User } from '../data/users';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import  InputMask  from 'react-input-mask' ; 
 class Formulario extends React.Component<Form, any>{
     constructor(props: Form) {
         super(props);
@@ -21,13 +22,12 @@ class Formulario extends React.Component<Form, any>{
             maritalstatus: '',
             haveson: '',
             birthday: ''
-        }
-    }
+        };
+    };
     getID = () => {
         return new Date().getTime();
-    }
+    };
     handleNewUser = () => {
-
         const user: User = {
             id: this.getID(),
             name: this.state.name,
@@ -43,8 +43,7 @@ class Formulario extends React.Component<Form, any>{
             maritalstatus: this.state.maritalstatus,
             haveson: this.state.haveson,
             birthday: this.state.birthday
-        }
-        
+        };
        this.props.addANewUser(user);
        this.setState({
         id : Number,
@@ -62,24 +61,24 @@ class Formulario extends React.Component<Form, any>{
         haveson: '',
         birthday: ''
        });
-    }
+    };
     handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
         const { name, value } = e.target;
         this.setState({
             [name]: value
-        })
+        });
     };
 
     validate = () => {
-        const documentValidate = this.state.document && this.state.document.length === 10;
+        const documentValidate = this.state.document && this.state.document.length === 13;
         const allIsValid = (
             this.state.name &&
             this.state.lastname &&
             documentValidate
         );
         return allIsValid;
-    }
+    };
 
     componentDidMount = () => {
         const document = this.props.match && this.props.match.params.document;
@@ -88,26 +87,21 @@ class Formulario extends React.Component<Form, any>{
             const user = userData.find((user:any, i:number ) =>  user.document && user.document === document);
             this.setState({
                 ...user
-            })
-        }
-    }
-
+            });
+        };
+    };
     guardar = () => {
         if(window.confirm('quieres guardar lo editado?')){
-
         const { document } = this.props.match.params;
         let datos = JSON.parse(localStorage.getItem('users')!);
         const edition = datos.map((user: any, i:number  )=> user.document === document ? {...this.state} : user );
         localStorage.setItem('users', JSON.stringify(edition));
-
         this.setState({
             users : edition
-
-        })
+        });
         this.Redirect()
-      }
-    }
-
+      };
+    };
     Redirect = () => this.props.history.push('/userList');
 
     render() {
@@ -159,7 +153,9 @@ class Formulario extends React.Component<Form, any>{
                             />
                         </div>
                         <div className="form-group">
-                            <input
+                            <InputMask
+                            mask='999-9999999-9'
+                            maskChar=''
                                 onChange={this.handleChange}
                                 name="document"
                                 className="form-control"
@@ -168,9 +164,11 @@ class Formulario extends React.Component<Form, any>{
                             />
                         </div>
                         <div className="form-group">
-                            <input
+                            <InputMask
+                            mask='99'
+                            maskChar=''
                                 onChange={this.handleChange}
-                                type="number"
+                                type=""
                                 name="age"
                                 className="form-control"
                                 placeholder=" edad"
@@ -199,13 +197,14 @@ class Formulario extends React.Component<Form, any>{
                             />
                         </div>
                         <div className="form-group">
-                            <input
-                                onChange={this.handleChange}
+                            <InputMask
+                            mask = " +1 (999) 999-9999  " 
+                            maskChar = ""
+                            onChange={this.handleChange}
                                 placeholder="telefono"
                                 name="phonenumber"
-                                type='number'
+                                type=''
                                 className="form-control"
-                                value={this.state.phonenumber}
                             />
                         </div>
                         <div className="form-group">
@@ -222,7 +221,6 @@ class Formulario extends React.Component<Form, any>{
                             <select
                                 name='maritalstatus'
                                 className="form-control"
-                                value={this.state.maritalstatus}
                             >
                                 <option>Casad@</option>
                                 <option>solter@</option>
@@ -240,7 +238,9 @@ class Formulario extends React.Component<Form, any>{
                             />
                         </div>
                         <div className="form-group">
-                            <input
+                            <InputMask 
+                            mask='99/99/9999'
+                            maskChar=''
                                 onChange={this.handleChange}
                                 placeholder="fecha de naciemiento"
                                 name="birthday"
@@ -249,6 +249,7 @@ class Formulario extends React.Component<Form, any>{
                                 value={this.state.birthday}
                             />
                         </div>
+
                         <button
                             disabled={!this.validate()}
                             className="btn btn-warning"
@@ -258,8 +259,8 @@ class Formulario extends React.Component<Form, any>{
                 </div>
             </div>
         );
-    }
-}
+    };
+};
 interface formState {
     id: number;
     name: string;
@@ -275,8 +276,8 @@ interface formState {
     maritalstatus: string;
     haveson: string;
     birthday: string;
-}
+};
 interface Form extends RouteComponentProps<any> {
     addANewUser: (user: User) => void;
-}
+};
 export default withRouter(Formulario); 

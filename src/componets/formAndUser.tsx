@@ -68,15 +68,15 @@ class FormAndUser extends React.Component<Iprops, IState>{
         </div>
       </div>
     );
-  }
-}
+  };
+};
 
 interface Iprops extends RouteComponentProps<any> {
-}
+};
 interface IState {
   users: User[];
   currentPage: 1;
   usersPerPage: 4;
 
-}
+};
 export default FormAndUser;

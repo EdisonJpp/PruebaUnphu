@@ -24,15 +24,10 @@ class SearchResult extends React.Component<TasksListProps, any>{
         if(value === ''){
             this.setState({
                 userFilter : []
-            })
-        }
+            });
+        };
     };
-    edition = (user: User) => {
-        this.props.edit(user);
-    };
-    deleteUser = (user: any) => {
-        this.props.deleteATasks(user);
-    };
+
     render() {
         const usersfilter = this.state.userFilter.map((userss: User, i: number) => {
             return (
@@ -53,8 +48,8 @@ class SearchResult extends React.Component<TasksListProps, any>{
                                     <p>cedula.: <b> {userss.document}</b></p>
                                     <p>correo: <b> {userss.email}</b> </p>
                                     <div className='d-flex'>
-                                        <button className='btn btn-primary' onClick={() => this.edition(userss)}  >editar</button>
-                                        <button className='btn btn-danger' type='button' onClick={() => this.deleteUser(i)}>Eliminar Usuario</button>
+                                        <button className='btn btn-primary' onClick={() => this.props.edit(userss)}  >editar</button>
+                                        <button className='btn btn-danger' type='button' onClick={() => this.props.deleteATasks(i)}>Eliminar Usuario</button>
                                     </div>
                                 </div>
                             </div>

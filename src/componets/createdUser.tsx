@@ -16,23 +16,15 @@ class UsersCreados extends React.PureComponent<any, any>{
             currentPage: e.target.value
         });
     };
-    edition = (user: User) => {
-        this.props.edit(user);
-    };
-    deleteUser = (user: any) => {
-        this.props.deleteATasks(user);
-    };
 
     render() {
         const { users, currentPage, usersPerPage } = this.state;
         const indexOfLastUsers = currentPage * usersPerPage;
         const indexOfFirtUsers = indexOfLastUsers - usersPerPage;
         const currentUsersPage = users.slice(indexOfFirtUsers, indexOfLastUsers);
-
         const pageNumber = [];
         for (let i = 1; i <= Math.ceil(users.length / usersPerPage); i++)
          { pageNumber.push(i) }
-        
         const renderPageNumber = pageNumber.map(number => {
             return (
                 <li
@@ -45,20 +37,17 @@ class UsersCreados extends React.PureComponent<any, any>{
                 </li>
             );
         });
-
         const array = (a: User, b: User) => {
             const aa = a.name.toUpperCase();
             const bb = b.name.toUpperCase();
             let compare = 0;
             if (aa > bb) {
                 compare = 1
-
             } else if (aa < bb) {
                 compare = -1
             };
             return compare
         };
-
         const user = currentUsersPage.sort(array).map((user: User, i: number) => {
             return (
                 <div className='datos col-3 mb-2'>
@@ -78,8 +67,8 @@ class UsersCreados extends React.PureComponent<any, any>{
                                     <p>cedula.: <b> {user.document}</b></p>
                                     <p>correo: <b> {user.email}</b> </p>
                                     <div className='d-flex'>
-                                        <button className='btn btn-primary' onClick={() => this.edition(user)}  >editar</button>
-                                        <button className='btn btn-danger' type='button' onClick={() => this.deleteUser(i)}>Eliminar Usuario</button>
+                                        <button className='btn btn-primary' onClick={() => this.props.edit(user) }  >editar</button>
+                                        <button className='btn btn-danger' type='button' onClick={() => this.props.deleteATasks(i)}>Eliminar Usuario</button>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +76,7 @@ class UsersCreados extends React.PureComponent<any, any>{
                     </div>
                 </div>
             );
-        })
+        });
         return (
             <div className="users">
                 <div className='row'>
@@ -105,8 +94,8 @@ class UsersCreados extends React.PureComponent<any, any>{
 interface Iprops {
     edit: (user: User) => void,
     deleteATasks: (user: any) => void
-}
+};
 interface state {
-}
+};
 export default UsersCreados;
 

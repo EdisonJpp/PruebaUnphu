@@ -62,5 +62,5 @@ class UserList extends React.Component<TasksListProps, Istate, any>{
     };
 };
 interface TasksListProps extends RouteComponentProps {
-}
+};
 export default UserList;
