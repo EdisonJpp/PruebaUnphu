@@ -4,6 +4,8 @@ import UsersCreados from './createdUser';
 import { RouteComponentProps } from 'react-router-dom';
 import SearchResult from './searchResult' ;
 
+interface TasksListProps extends RouteComponentProps {
+};
 class Istate {
     users = [];
     currentPage = 1;
@@ -60,7 +62,5 @@ class UserList extends React.Component<TasksListProps, Istate, any>{
             </div>
         );
     };
-};
-interface TasksListProps extends RouteComponentProps {
 };
 export default UserList;

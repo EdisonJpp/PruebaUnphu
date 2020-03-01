@@ -1,6 +1,10 @@
 import React from 'react';
 import { User } from '../data/users';
 
+interface TasksListProps {
+    edit: (user: User) => void,
+    deleteATasks: (user: any) => void
+};
 class SearchResult extends React.Component<TasksListProps, any>{
     constructor(props: TasksListProps) {
         super(props);
@@ -31,7 +35,7 @@ class SearchResult extends React.Component<TasksListProps, any>{
     render() {
         const usersfilter = this.state.userFilter.map((userss: User, i: number) => {
             return (
-                <div className='datos col-3 mb-2 d-flex'>
+                <div className='datos  mb-2'>
                     <div className="accordion" id="accordionExample">
                         <div className="card">
                             <div className="card-header" id="headingOne">
@@ -71,15 +75,11 @@ class SearchResult extends React.Component<TasksListProps, any>{
                     />
                     <button className='btn btn-primary'>buscar</button>
                 </div>
-                <div className="searchResult">
+                <div className="searchResult col-md-12 col-sm-12 d-flex">
                     {usersfilter}
                 </div>
             </div>
         );
     };
-};
-interface TasksListProps {
-    edit: (user: User) => void,
-    deleteATasks: (user: any) => void
 };
 export default SearchResult; 

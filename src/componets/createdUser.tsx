@@ -1,6 +1,12 @@
 import React from 'react';
 import { User } from '../data/users';
 
+interface Iprops {
+    edit: (user: User) => void,
+    deleteATasks: (user: any) => void
+};
+interface state {
+};
 class UsersCreados extends React.PureComponent<any, any>{
     constructor(props: Iprops) {
         super(props);
@@ -48,9 +54,9 @@ class UsersCreados extends React.PureComponent<any, any>{
             };
             return compare
         };
-        const user = currentUsersPage.sort(array).map((user: User, i: number) => {
+        const user = currentUsersPage.sort(array).map((user: any, i: number) => {
             return (
-                <div className='datos col-3 mb-2'>
+                <div className='datos  mb-2'>
                     <div className="accordion" id="accordionExample">
                         <div className="card">
                             <div className="card-header" id="headingOne">
@@ -78,24 +84,18 @@ class UsersCreados extends React.PureComponent<any, any>{
             );
         });
         return (
-            <div className="users">
-                <div className='row'>
+            <div className="users col-md-12 col-sm-12">
+                <div className='row ml-1 '>
                     {user}
                 </div>
                 <footer>
-                    <ul id='page-numbers' className='d-flex'>
+                    <ul id='page-numbers' className=''>
                         {renderPageNumber}
                     </ul>
                 </footer>
             </div>
         );
     };
-};
-interface Iprops {
-    edit: (user: User) => void,
-    deleteATasks: (user: any) => void
-};
-interface state {
 };
 export default UsersCreados;
 

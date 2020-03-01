@@ -2,6 +2,27 @@ import React from 'react';
 import { User } from '../data/users';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import  InputMask  from 'react-input-mask' ; 
+
+interface formState {
+    id: number;
+    name: string;
+    middlename: string;
+    lastname: string;
+    username: string;
+    document: number;
+    age: 0;
+    gender: string;
+    address: string;
+    phonenumber: 0;
+    email: string;
+    maritalstatus: string;
+    haveson: string;
+    birthday: string;
+};
+interface Form extends RouteComponentProps<any> {
+    addANewUser: (user: User) => void;
+};
+
 class Formulario extends React.Component<Form, any>{
     constructor(props: Form) {
         super(props);
@@ -106,7 +127,7 @@ class Formulario extends React.Component<Form, any>{
 
     render() {
         return (
-            <div>
+            <div className='col-md-12 col-sm-12 '>
                 <div className="card m-2">
                     <div className='card-header'>
                         <h2 className='h1' >Crearr Usuario</h2>
@@ -260,24 +281,5 @@ class Formulario extends React.Component<Form, any>{
             </div>
         );
     };
-};
-interface formState {
-    id: number;
-    name: string;
-    middlename: string;
-    lastname: string;
-    username: string;
-    document: number;
-    age: 0;
-    gender: string;
-    address: string;
-    phonenumber: 0;
-    email: string;
-    maritalstatus: string;
-    haveson: string;
-    birthday: string;
-};
-interface Form extends RouteComponentProps<any> {
-    addANewUser: (user: User) => void;
 };
 export default withRouter(Formulario); 

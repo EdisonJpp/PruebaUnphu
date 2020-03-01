@@ -5,6 +5,14 @@ import { RouteComponentProps } from 'react-router-dom';
 import UsersCreados from './createdUser';
 
 
+interface Iprops extends RouteComponentProps<any> {
+};
+interface IState {
+  users: User[];
+  currentPage: 1;
+  usersPerPage: 4;
+
+};
 class FormAndUser extends React.Component<Iprops, IState>{
 
   constructor(props: Iprops) {
@@ -49,13 +57,14 @@ class FormAndUser extends React.Component<Iprops, IState>{
       this.setState({
         users: uuser
       });
+      this.redirect2();
     };
   };
-
+  
   render() {
     return (
       <div className='loscard'>
-        <div className='w-20 h-50'>
+        <div className='h-50'>
           <Formulario addANewUser={this.addANewUser} />
         </div>
         <div className=''>
@@ -64,19 +73,10 @@ class FormAndUser extends React.Component<Iprops, IState>{
             deleteATasks={this.deleteATasks}
             edit={this.edit}
           />
-
         </div>
       </div>
     );
   };
 };
 
-interface Iprops extends RouteComponentProps<any> {
-};
-interface IState {
-  users: User[];
-  currentPage: 1;
-  usersPerPage: 4;
-
-};
 export default FormAndUser;

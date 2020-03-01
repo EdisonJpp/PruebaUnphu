@@ -5,7 +5,8 @@ class start extends React.Component<any, any> {
     constructor(props: string) {
         super(props);
         this.state = {
-            Redirect: false
+            Redirect: false,
+            sideBarIsHidden: false,
         };
     };
     setRedirect = () => {
@@ -24,11 +25,15 @@ class start extends React.Component<any, any> {
             return this.setRedirect();
         } else return null;
     };
+
+    toggleSideBar = () => this.setState({ ...this.state, sideBarIsHidden: !this.state.sideBarIsHidden });
+
+
     render() {
         return (
             <div className='body'>
                 {this.renderRedirect()}
-                <div className="header">
+                <div className={`header ${this.state.sideBarIsHidden && 'hide-sidebar'}`}>
                     <div className="collapse navbar-collapse show" id="navbarNavAltMarkup">
                         <div className="topeusua">
                             <ul>
@@ -57,23 +62,22 @@ class start extends React.Component<any, any> {
                         </ul>
                     </div>
                 </div>
-                <div className='partederecha'>
+                <div className='partederecha d-flex' style={{flexDirection :'column'}}>
                     <div className='topderecho'>
                         <nav className="navbar navbar-expand-lg  topederecho">
                             <span ><i className="fas fa-user-check"></i>Registro de usuario</span>
                             <span className="navbar-toggler-icon"></span>
                             <div className="collapse navbar-collapse tope" id="navbarNavAltMarkup">
                                 <div className="navbar-nav">
-                                    <span className="nav-item nav-link active"> <i className="fas fa-search"></i>Buscar <span
-                                        className="sr-only">(current)</span></span>
+                                   <Link to='/userList'> <span className="nav-item nav-link active"> <i className="fas fa-search"></i>Buscar </span> </Link>
                                     <Link to='/inicio'> <span className="nav-item nav-link" >Inicio<i className="fas fa-home"></i></span></Link>
                                 </div>
                             </div>
                         </nav>
-
                     </div>
-                </div>
+                <button className="btn-primary" onClick={this.toggleSideBar}>Sidebar</button>
                     {this.props.children}
+                </div>
                 </div>
                 );
             };
